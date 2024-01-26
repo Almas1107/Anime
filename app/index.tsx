@@ -1,4 +1,5 @@
 import { Play, Plus } from "@/assets";
+import { Carousel } from "@/components";
 import {
   View,
   Text,
@@ -9,7 +10,32 @@ import {
   TouchableOpacity,
 } from "react-native";
 export default function Page() {
-  const image = { uri: "https://legacy.reactjs.org/logo-og.png" };
+  const Genres = [
+    "Trending",
+    "Mystery",
+    "Action",
+    "Romance",
+    "Adventure",
+    "Supernatural",
+    "Drama",
+    "Fantasy",
+    "Thriller",
+    "Horror",
+    "Mecha",
+    "Shoujo",
+    "Seinen",
+    "Josei",
+    "Harem",
+    "Ecchi",
+    "Isekai",
+    "Music",
+    "Psychological",
+    "Historical",
+    "Cyberpunk",
+    "Steampunk",
+    "Parody",
+    "Sports",
+  ];
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -27,6 +53,9 @@ export default function Page() {
                   color: "white",
                   fontSize: 30,
                   fontWeight: "bold",
+                  textShadowColor: "rgba(0, 0, 0, 0.75)",
+                  textShadowOffset: { width: -1, height: 1 },
+                  textShadowRadius: 10,
                 }}
               >
                 Demon Slayer: Kimetsu...
@@ -36,6 +65,9 @@ export default function Page() {
                   color: "white",
                   fontSize: 14,
                   fontWeight: "bold",
+                  textShadowColor: "rgba(0, 0, 0, 0.75)",
+                  textShadowOffset: { width: -1, height: 1 },
+                  textShadowRadius: 10,
                 }}
               >
                 Action, Shounen, Martial Arts, Adventure, ...
@@ -91,7 +123,9 @@ export default function Page() {
             </View>
           </ImageBackground>
         </View>
-        
+        {Genres.map((el, ind) => {
+          return <Carousel category={el} key={ind} />;
+        })}
       </ScrollView>
     </View>
   );
