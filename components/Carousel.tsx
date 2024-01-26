@@ -9,16 +9,17 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRoute } from "@react-navigation/native";
 
 export const Carousel = ({ category }: any) => {
   const [datas, setDatas] = useState<any>();
   const [isLoading, setIsloading] = useState<boolean>(true);
-
+  const router = useRouter();
   const DataHandler = async () => {
-    let newcat = category.toLowerCase();
+    let newcat: string = category.toLowerCase();
     const result: any = await axios.get(
       `https://kitsu.io/api/edge/anime?filter[categories]=${newcat}&page[limit]=20`
     );
@@ -47,7 +48,10 @@ export const Carousel = ({ category }: any) => {
         >
           {category}
         </Text>
-        <Link href="/" style={{ color: "#06C149", fontSize: 16 }}>
+        <Link
+          href={`/seeall/${category}`}
+          style={{ color: "#06C149", fontSize: 16 }}
+        >
           See all
         </Link>
       </View>
@@ -56,11 +60,11 @@ export const Carousel = ({ category }: any) => {
       ) : (
         <SafeAreaView style={styles.container}>
           <FlatList
-            horizontal
+            horizontal={true}
             data={datas}
             renderItem={({ item: anime, index }) => (
               <TouchableOpacity
-                onPress={() => console.log(anime.posterImage)}
+                onPress={() => router.navigate(`/anime/${anime.id}`)}
                 style={{ width: 130, height: 200, marginLeft: 12 }}
               >
                 <ImageBackground

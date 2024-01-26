@@ -9,6 +9,7 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import { Header } from "@/components";
 export default function Page() {
   const Genres = [
     "Trending",
@@ -38,6 +39,7 @@ export default function Page() {
   ];
   return (
     <View style={styles.container}>
+      <Header />
       <ScrollView>
         <View style={{ width: "100%", height: 400 }}>
           <ImageBackground

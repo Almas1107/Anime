@@ -21,7 +21,7 @@ export const Header = () => {
           <Notification />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Search />
+          <Search color={"white"} />
         </TouchableOpacity>
       </View>
     </View>
